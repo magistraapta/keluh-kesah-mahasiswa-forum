@@ -5,15 +5,15 @@ import axios from 'axios';
 
 async function getFeed(){
   try {
-    const res = await axios.get('http://localhost:8888/feed')
+    const res = await axios.get('http://localhost:8888/post/feed', )
     return res.data
   } catch (error) {
     console.log(error)
+    return error
   }
 }
 export default async function Content() {
-  const feed = await getFeed()
-  const data = feed.result
+  const data = await getFeed()
   return (
     <div>
       <div className='flex justify-center  mt-4'>
@@ -26,7 +26,7 @@ export default async function Content() {
         <div className=' w-8/12'>
           {data.map((item, index) => (
             <Link key={index} href={`post/${item.id}`}>
-              <Card  title={item.title} body={item.content} />
+              <Card  title={item.title} body={item.content} name={item.author.name} />
             </Link>
           ))}
         </div>

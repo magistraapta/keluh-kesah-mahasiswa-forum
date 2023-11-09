@@ -2,9 +2,9 @@ import React from 'react';
 import Account from './Account';
 import LoginSignin from './LoginSignin';
 import Link from 'next/link';
+import {connect} from 'react-redux'
 
-export default function Navbar() {
-  const isLogin = true;
+export default function Navbar({isAuthenticated, user, logout}) {
   return (
     <div className='flex justify-center p-6 shadow-md sticky top-0 bg-base-100'>
       <div className='w-full flex justify-between items-center '>
@@ -16,7 +16,7 @@ export default function Navbar() {
           </Link>
         </div>
         <input type='search' placeholder='Search here...' className=' w-8/12 rounded-lg py-2 px-4 bg-transparent input-bordered input' />
-        {isLogin ? <Account /> : <LoginSignin />}
+        <LoginSignin />
       </div>
     </div>
   );
